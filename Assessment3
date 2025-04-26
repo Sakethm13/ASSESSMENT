@@ -1,0 +1,35 @@
+def check_disarium_number(number):
+    total_sum = 0
+    number_str = str(number)
+    for position, digit in enumerate(number_str, start=1):
+        total_sum += int(digit) ** position
+    if total_sum == number:
+        return True
+    else:
+        return False
+
+def find_first_n_disarium_numbers(n):
+    found = 0
+    current_number = 0
+    disarium_numbers = []
+    while found < n:
+        if check_disarium_number(current_number):
+            disarium_numbers.append(current_number)
+            found += 1
+        current_number += 1
+    return disarium_numbers
+
+def find_disarium_between(start_number, end_number):
+    disarium_list = []
+    for number in range(start_number, end_number + 1):
+        if check_disarium_number(number):
+            disarium_list.append(number)
+    return disarium_list
+
+n = int(input("Enter how many first Disarium numbers you want: "))
+print(f"First {n} Disarium numbers are:", find_first_n_disarium_numbers(n))
+
+start = int(input("\nEnter the start number of the range: "))
+end = int(input("Enter the end number of the range: "))
+print(f"Disarium numbers between {start} and {end} are:", find_disarium_between(start, end))
+
